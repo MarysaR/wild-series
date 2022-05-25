@@ -13,8 +13,12 @@ class CategoryFixtures extends Fixture
         'J-Drama',
         'K-Drama',
         'T-Drama',
+        'Isekaï',
+        'Josei',
         'Seinen',
-        'Shônen', 
+        'Shônen',
+        
+
     ];
 
     public function load(ObjectManager $manager): void
@@ -24,6 +28,7 @@ class CategoryFixtures extends Fixture
             $category = new Category();
             $category->setName($categoryName);
             $manager->persist($category);
+            $this->addReference('category_' . $categoryName, $category);
         }
         $manager->flush();
     }
