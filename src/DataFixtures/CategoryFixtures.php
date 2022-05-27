@@ -17,8 +17,6 @@ class CategoryFixtures extends Fixture
         'Josei',
         'Seinen',
         'Shônen',
-        
-
     ];
 
     public function load(ObjectManager $manager): void
