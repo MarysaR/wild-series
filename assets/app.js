@@ -7,6 +7,11 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
+// import Swiper JS
+import Swiper from 'swiper';
+// import Swiper styles
+import 'swiper/css';
+
 
 // start the Stimulus application
 import './bootstrap';
@@ -14,3 +19,4 @@ import './bootstrap';
 console.log('Hello Webpack Encore !');
 
 window.bootstrap = require('bootstrap');
+

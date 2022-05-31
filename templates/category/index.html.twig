@@ -1,23 +1,71 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All categories{% endblock %}
-
 {% block body %}
-<h1>All your categories </h1>
-{% for category in categories %}
-<div>
-    <h2>
-        {{ loop.index }} - Category : {{ category.name }}
-    </h2>
-    <a href="{{ path("category_show", {categoryName: category.name}) }}">
-        See the serie    
-    </a>
-</div>
-{% else %}
-    No series found
-    {% endfor %}
 
-    <a href="{{ path('app_index') }}">
-    Back to home page
-    </a>
+	{% block title %}
+		<br><h2>All your categories</h2> <br>
+	{% endblock %}
+
+	<section class="categories">
+		{% for category in categories %}
+			<section class="swiper mySwiper mb-5 mx-5">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<h3>
+							{{ loop.index }} : 
+							{{ category.name }}
+						</h3>
+						<a href="{{ path("category_show", {categoryName: category.name}) }}">
+							See the category
+						</a>
+					</div>
+				</div>
+			</section>
+		{% else %}
+			No series found
+		{% endfor %}
+
+		<a href="{{ path('app_index') }}">
+			Back to home page
+		</a>
+	</section>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<!-- Initialize Swiper -->
+	<script>
+		const swiper = new Swiper(".mySwiper", {
+slidesPerView: 3,
+centerMode: true,
+centerPadding: '20px',
+spaceBetween: 30,
+navigation: {
+nextEl: ".swiper-button-next",
+prevEl: ".swiper-button-prev"
+},
+breakpoints: {
+320: {
+slidesPerView: 1,
+spaceBetween: 20
+},
+480: {
+slidesPerView: 1,
+spaceBetween: 20
+},
+768: {
+slidesPerView: 2,
+spaceBetween: 40
+},
+1024: {
+slidesPerView: 3,
+spaceBetween: 50
+},
+1400: {
+slidesPerView: 4,
+spaceBetween: 50
+}
+}
+});
+</script>
 {% endblock %}

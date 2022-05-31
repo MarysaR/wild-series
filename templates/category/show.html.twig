@@ -1,27 +1,74 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catégorie {{ category.name }}{% endblock %}
-
 {% block body %}
-    <div class="container">
-        <h1 class="mb-3">All series in the category {{ category.name }} : </h1>
-       
-        {% for program in programs %}
-            <div class="mt-5">
-                <h2>{{ loop.index }} / {{ program.title }} - Category : {{ program.category.name }}</h2>
-                <p>{{ program.synopsis }}</p>
 
-                {# Lien vers la fiche série : #}
-                <a href="{{ path("program_show", { id: program.id }) }}">View the poster</a>
-                 <img class="align-self-start mr-3" src="/uploads/{{program.poster}}" alt="{{ program.title }} poster">
+{% block title %}
+<br><h2>All your series in :  {{ category.name }}</h2><br>
+{% endblock %}
+
+<section class="programs">
+    {% for program in programs %}
+        <section class="swiper mySwiper mb-5 mx-5">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <h3>
+                   - {{ program.title }} </h3>
+                     <p>{{ program.synopsis }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, sed esse. Vitae aut, possimus veniam earum est temporibus facere, itaque minus fugit eligendi quam, quis nemo. Et nesciunt aut officia.</p>
+
+                     {# Lien vers la fiche série : #}
+                    <a href="{{ path("program_show", { id: program.id }) }}"><h6>View the poster</h6><br></a>
+                    <img class="align-self-start mr-3" src="/uploads/{{program.poster}}" alt="{{ program.title }} poster">
+                </div>
             </div>
+        </section>
+
         {% else %}
             No series found
-            
         {% endfor %}
 
         <a href="{{ path('app_index') }}">
             Return to home page
         </a>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+	<!-- Swiper JS -->
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+	<!-- Initialize Swiper -->
+	<script>
+		const swiper = new Swiper(".mySwiper", {
+slidesPerView: 3,
+centerMode: true,
+centerPadding: '20px',
+spaceBetween: 30,
+navigation: {
+nextEl: ".swiper-button-next",
+prevEl: ".swiper-button-prev"
+},
+breakpoints: {
+320: {
+slidesPerView: 1,
+spaceBetween: 20
+},
+480: {
+slidesPerView: 1,
+spaceBetween: 20
+},
+768: {
+slidesPerView: 2,
+spaceBetween: 40
+},
+1024: {
+slidesPerView: 3,
+spaceBetween: 50
+},
+1400: {
+slidesPerView: 4,
+spaceBetween: 50
+}
+}
+});
+</script>
 {% endblock %}

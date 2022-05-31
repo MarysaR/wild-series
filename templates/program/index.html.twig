@@ -1,24 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All Programs{% endblock %}
-
 {% block body %}
-<h1>All your series </h1>
-{% for program in programs %}
-<div>
-    <h2>
-        {{ loop.index }} / {{ program.title }} - Category : {{ program.category.name }}
-    </h2>
-    <p>{{ program.synopsis }}</p>
-    <a href="{{ path("program_show", {id: program.id}) }}">
-        See the serie    
-    </a>
-</div>
-{% else %}
-    No series found
+
+{% block title %}
+<br><h2>All your programs</h2><br>
+{% endblock %}
+
+<section class="programs">
+    {% for program in programs %}
+        <section class="swiper mySwiper mb-5 mx-5">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <h3>
+                        - {{ program.title }} : {{ program.category.name }}
+                    </h3>
+                    <p>{{ program.synopsis }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio dolores illum impedit commodi explicabo nulla laborum odio velit temporibus? Suscipit dolor quos pariatur. Earum, ipsa pariatur quisquam exercitationem sint praesentium.</p>
+                    <a href="{{ path("program_show", {id: program.id}) }}">
+                    See the program    
+                    </a>
+                </div>
+            </div>
+        </section>
+    {% else %}
+        No program found
     {% endfor %}
 
     <a href="{{ path('app_index') }}">
     Back to home page
     </a>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+	<!-- Swiper JS -->
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+	<!-- Initialize Swiper -->
+	<script>
+		const swiper = new Swiper(".mySwiper", {
+slidesPerView: 3,
+centerMode: true,
+centerPadding: '20px',
+spaceBetween: 30,
+navigation: {
+nextEl: ".swiper-button-next",
+prevEl: ".swiper-button-prev"
+},
+breakpoints: {
+320: {
+slidesPerView: 1,
+spaceBetween: 20
+},
+480: {
+slidesPerView: 1,
+spaceBetween: 20
+},
+768: {
+slidesPerView: 2,
+spaceBetween: 40
+},
+1024: {
+slidesPerView: 3,
+spaceBetween: 50
+},
+1400: {
+slidesPerView: 4,
+spaceBetween: 50
+}
+}
+});
+</script>
 {% endblock %}

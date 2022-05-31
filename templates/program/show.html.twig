@@ -1,20 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	Serie #{{ program.id }}
-{% endblock %}
-
 {% block body %}
-	<div class="media">
-		<img class="align-self-start mr-3" src="/uploads/{{program.poster}}" alt="{{ program.title }} poster">
-		<div class="media-body">
-			<h1 class="mt-0">{{ program.title }}</h1>
-			<p>{{ program.synopsis }}</p>
-			<p>Category :{{ program.category.name }}</p>
-		</div>
-	</div>
 
-	<a href="{{ path('program_index') }}">
-		Back to the programme list
-	</a>
-{% endblock %}
+	{% block title %}
+		
+	{% endblock %}
+	
+	<section class="programs">
+		<section class="swiper mySwiper mb-5 mx-5">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<br><p>Category : {{ program.category.name }}</p><br>
+					<img class="align-self-center" src="/uploads/{{program.poster}}" alt="{{ program.title }} poster"> <br>
+					<br><h3>
+						- {{ program.title }}
+					</h3>
+					<p>
+					{{ program.synopsis }}
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus obcaecati ducimus ipsum accusantium eligendi? Veritatis ut dolore dolor! Blanditiis, soluta repellat deserunt repellendus asperiores itaque vitae voluptates veritatis tempore accusantium?
+					</p>
+				</div>
+			</div>
+			<a href="{{ path('program_index') }}">
+				Back to the programme list
+			</a>
+		</section>
+	{% endblock %}
