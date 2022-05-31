@@ -47,7 +47,7 @@ class ProgramController extends AbstractController
         ]);
     }
 
-    #[Route('/{program_id<\d+>}/season/{season_id<\d+>}/episode/{episode_id<\d+>}',methods: ['GET'], name: 'episode_show')]
+    #[Route('/{program_id<\d+>}/season/{season_id<\d+>}/episode/{episode_id<\d+>}', methods: ['GET'], name: 'episode_show')]
     public function showEpisode(Program $program, Season $season, Episode $episode): Response
     {
         return $this->render('program/episode_show.html.twig', [
